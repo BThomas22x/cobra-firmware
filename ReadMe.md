@@ -1,26 +1,8 @@
-<h3 align="center">
-<a href="https://github.com/DarkFlippers/unleashed-firmware">
-<img src="https://user-images.githubusercontent.com/10697207/186202043-26947e28-b1cc-459a-8f20-ffcc7fc0c71c.png" align="center" alt="fzCUSTOM" border="0">
-</a>
-</h3>
-<div align="center" id="badges">
-	<a href="https://discord.unleashedflip.com">
-		<img src="https://img.shields.io/discord/937479784148115456?style=flat-square&logo=discord&label=Discord&color=%237289DA&link=https%3A%2F%2Fdiscord.unleashedflip.com%2F" alt="Discord server"/>
-	</a>
-	<a href="https://t.me/flipperzero_unofficial">
-		<img src="https://img.shields.io/endpoint?label=EN%20Channel&style=flat-square&url=https%3A%2F%2Fmogyo.ro%2Fquart-apis%2Ftgmembercount%3Fchat_id%3Dflipperzero_unofficial" alt="EN TG channel"/>
-	</a>
-	<a href="https://t.me/flipperzero_unofficial_ru">
-		<img src="https://img.shields.io/endpoint?label=RU%20Channel&style=flat-square&url=https%3A%2F%2Fmogyo.ro%2Fquart-apis%2Ftgmembercount%3Fchat_id%3Dflipperzero_unofficial_ru" alt="RU TG channel"/>	
-	</a>
-	<a href="https://t.me/flipperzero_unofficial_ua">
-		<img src="https://img.shields.io/endpoint?label=UA%20Channel&style=flat-square&url=https%3A%2F%2Fmogyo.ro%2Fquart-apis%2Ftgmembercount%3Fchat_id%3Dflipperzero_unofficial_ua" alt="UA TG channel"/>
-	</a>
-</div>
 
-### Welcome to the Flipper Zero Unleashed Firmware repo! 
 
-#### **This firmware is a fork from** [flipperdevices/flipperzero-firmware](https://github.com/flipperdevices/flipperzero-firmware)
+### Welcome to the Flipper Zero Cobra Firmware repo! 
+
+#### **This firmware is a fork from the Unleashed Firmware repo
 
 <br>
 
@@ -34,15 +16,9 @@
 <br>
 
 ## FAQ (frequently asked questions)
-[Follow this link to find answers to most asked questions](https://github.com/DarkFlippers/unleashed-firmware/blob/dev/documentation/FAQ.md)
+None yet, we're building now
 
-## Dev builds (unstable)
-- https://dev.unleashedflip.com/
-- https://t.me/kotnehleb
-## Releases in Telegram
-- https://t.me/unleashed_fw
-
-# What's changed
+# What's changed with Unleashed & Cobra
 - **Sub-GHz** *lib & hal*
 	- Regional TX restrictions removed
 	- Extra Sub-GHz frequencies
@@ -97,8 +73,6 @@
 	- Other small fixes and changes throughout
 	- See other changes in readme below
 
-Also check the [changelog in releases](https://github.com/DarkFlippers/unleashed-firmware/releases) for latest updates!
-
 ### Current modified and new Sub-GHz protocols list:
 Thanks to Official team (to their SubGHz Developer, Skorp) for implementing decoders for these protocols in OFW.
 
@@ -125,41 +99,18 @@ Encoders made by @assasinfil & @xMasterX:
 - Nice ON2E (Nice One) -> How to create new remote - [instructions](https://github.com/DarkFlippers/unleashed-firmware/blob/dev/documentation/SubGHzRemoteProg.md)
 
 ## Please support development of the project
-The majority of this project is developed and maintained by me, @xMasterX.
-I'm unemployed, and the only income I receive is from your donations.
+The majority of this project is developed and maintained by me, @BThomas22x
 Our team is small and the guys are working on this project as much as they can solely based on the enthusiasm they have for this project and the community.
-- @Leptopt1los - NFC, RFID, IR Assets (only ACs), Plugins, and many other things
-- @gid9798 - SubGHz, Plugins, many other things
-- @assasinfil - SubGHz protocols, NFC parsers
-- @Svaarich - UI design and animations
-- @amec0e - Infrared assets
-- Community moderators in Telegram, Discord, and Reddit
+- CoryHoke1@gmail.com
+- BThomas22x@gmail.com
 - And of course our GitHub community. Your PRs are a very important part of this firmware and open-source development.
 
-The amount of work done on this project is huge and we need your support, no matter how large or small. Even if you just say, "Thank you Unleashed firmware developers!" somewhere. Doing so will help us continue our work and will help drive us to make the firmware better every time.
+The amount of work done on this project is huge and we need your support, no matter how large or small. Even if you just say, "Thank you!" somewhere. Doing so will help us continue our work and will help drive us to make the firmware better every time.  Make sure to thank the Unleashed team!!
 Also, regarding our releases, every build has and always will be free and open-source. There will be no paywall releases or closed-source apps within the firmware. As long as I am working on this project it will never happen.
 You can support us by using links or addresses below:
-|Service|Remark|Link/Wallet|
-|-|-|-|
-|**Patreon**||https://patreon.com/mmxdev|
-|**Boosty**|patreon alternative|https://boosty.to/mmxdev|
-|cloudtips|only RU payments accepted|https://pay.cloudtips.ru/p/7b3e9d65|
-|YooMoney|only RU payments accepted|https://yoomoney.ru/fundraise/XA49mgQLPA0.221209|
-|USDT|(TRC20)|`TSXcitMSnWXUFqiUfEXrTVpVewXy2cYhrs`|
-|BCH||`qquxfyzntuqufy2dx0hrfr4sndp0tucvky4sw8qyu3`|
-|ETH|(BSC/ERC20-Tokens)|`darkflippers.eth` (or `0xFebF1bBc8229418FF2408C07AF6Afa49152fEc6a`)|
-|BTC||`bc1q0np836jk9jwr4dd7p6qv66d04vamtqkxrecck9`|
-|DOGE||`D6R6gYgBn5LwTNmPyvAQR6bZ9EtGgFCpvv`|
-|LTC||`ltc1q3ex4ejkl0xpx3znwrmth4lyuadr5qgv8tmq8z9`|
-|XMR|(Monero)| `41xUz92suUu1u5Mu4qkrcs52gtfpu9rnZRdBpCJ244KRHf6xXSvVFevdf2cnjS7RAeYr5hn9MsEfxKoFDRSctFjG5fv1Mhn`|
-|TON||`EQCOqcnYkvzOZUV_9bPE_8oTbOrOF03MnF-VcJyjisTZmpGf`|
+paypal.com/BThomas22x
 
 ## Community apps included
-
-### [🎲 Download Extra plugins for Unleashed](https://github.com/xMasterX/all-the-plugins/releases/latest)
-### [List of Extra pack](https://github.com/xMasterX/all-the-plugins/tree/dev#extra-pack) | [List of Base *(Default)* pack](https://github.com/xMasterX/all-the-plugins/tree/dev#default-pack)
-
-See full list and sources here: [xMasterX/all-the-plugins](https://github.com/xMasterX/all-the-plugins/tree/dev)
 
 ### Official Flipper Zero Apps Catalog [web version](https://lab.flipper.net/apps) or mobile app
 
