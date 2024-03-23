@@ -44,8 +44,8 @@ static void draw_battery(Canvas* canvas, BatteryInfoModel* data, int x, int y) {
 
     // Set text
     if(current > 0) {
-        snprintf(emote, sizeof(emote), "%s", "Yummy!");
-        snprintf(header, sizeof(header), "%s", "Charging at");
+        snprintf(emote, sizeof(emote), "%s", "Fantastical!");
+        snprintf(header, sizeof(header), "%s", "Charged so far...");
         snprintf(
             value,
             sizeof(value),
@@ -59,8 +59,8 @@ static void draw_battery(Canvas* canvas, BatteryInfoModel* data, int x, int y) {
             emote,
             sizeof(emote),
             "%s",
-            current < HIGH_DRAIN_CURRENT_THRESHOLD ? "Oh no!" : "Om-nom-nom!");
-        snprintf(header, sizeof(header), "%s", "Consumption is");
+            current < HIGH_DRAIN_CURRENT_THRESHOLD ? "Uh oh!" : "Get in my belly!");
+        snprintf(header, sizeof(header), "%s", "Consumption =");
         snprintf(
             value,
             sizeof(value),
@@ -70,7 +70,7 @@ static void draw_battery(Canvas* canvas, BatteryInfoModel* data, int x, int y) {
     } else if(data->vbus_voltage > 0) {
         if(data->charge_voltage_limit < 4.2) {
             // Non-default battery charging limit, mention it
-            snprintf(emote, sizeof(emote), "Charged!");
+            snprintf(emote, sizeof(emote), "Let's do this!");
             snprintf(header, sizeof(header), "Limited to");
             snprintf(
                 value,
@@ -79,7 +79,7 @@ static void draw_battery(Canvas* canvas, BatteryInfoModel* data, int x, int y) {
                 (uint32_t)(data->charge_voltage_limit),
                 (uint32_t)(data->charge_voltage_limit * 10) % 10);
         } else {
-            snprintf(header, sizeof(header), "Charged!");
+            snprintf(header, sizeof(header), "Let's f'n go!");
         }
     } else {
         snprintf(header, sizeof(header), "Napping...");
