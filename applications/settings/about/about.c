@@ -72,10 +72,10 @@ static DialogMessageButton compliance_screen(DialogsApp* dialogs, DialogMessage*
 static DialogMessageButton unleashed_info_screen(DialogsApp* dialogs, DialogMessage* message) {
     DialogMessageButton result;
 
-    const char* screen_header = "Unleashed Firmware\n";
+    const char* screen_header = "Cobra Firmware\n";
 
-    const char* screen_text = "Play with caution.\n"
-                              "Not for illegal use!";
+    const char* screen_text = "By BThomas22x@gmail.com\n"
+                              "and CoryHoke1@gmail.com!";
 
     dialog_message_set_header(message, screen_header, 0, 0, AlignLeft, AlignTop);
     dialog_message_set_text(message, screen_text, 0, 26, AlignLeft, AlignTop);
@@ -89,9 +89,9 @@ static DialogMessageButton unleashed_info_screen(DialogsApp* dialogs, DialogMess
 static DialogMessageButton unleashed_info_screen2(DialogsApp* dialogs, DialogMessage* message) {
     DialogMessageButton result;
 
-    const char* screen_text = "Custom plugins included\n"
-                              "For updates & info visit\n"
-                              "github.com/DarkFlippers";
+    const char* screen_text = "Cobra Firmware v1.0.3\n"
+                              "Still in beta,debug only\n"
+                              "Hack the planet!";
 
     dialog_message_set_text(message, screen_text, 0, 0, AlignLeft, AlignTop);
     result = dialog_message_show(dialogs, message);
@@ -137,7 +137,7 @@ static DialogMessageButton hw_version_screen(DialogsApp* dialogs, DialogMessage*
         furi_hal_version_get_hw_body(),
         furi_hal_version_get_hw_connect(),
         furi_hal_version_get_hw_region_name_otp(),
-        my_name ? my_name : "Unknown");
+        my_name ? my_name : "Cobra_v1.0.3");
 
     furi_string_cat_printf(buffer, "Serial Number:\n");
     const uint8_t* uid = furi_hal_version_uid();
