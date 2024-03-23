@@ -43,13 +43,13 @@ static void render_callback(Canvas* canvas, void* ctx) {
 
     if(stats->butthurt <= 4) {
         mood = 0;
-        snprintf(mood_str, 20, "Mood: Happy");
+        snprintf(mood_str, 20, "Feels: Aww yeah!");
     } else if(stats->butthurt <= 9) {
         mood = 1;
-        snprintf(mood_str, 20, "Mood: Ok");
+        snprintf(mood_str, 20, "Feels: Meh");
     } else {
         mood = 2;
-        snprintf(mood_str, 20, "Mood: Angry");
+        snprintf(mood_str, 20, "Feels: Wtf??");
     }
 
     uint32_t xp_progress = 0;
