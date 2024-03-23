@@ -440,6 +440,8 @@ static void gap_advertise_start(GapState new_state) {
         CFG_IDENTITY_ADDRESS,
         0,
         strlen(gap->service.adv_name),
+        uint8_t bdaddnew[] = {0xFF, 0xEE, 0xDD, 0xCC, 0xBB, 0xAA};
+aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, bdaddnew);
         (uint8_t*)gap->service.adv_name,
         gap->service.adv_svc_uuid_len,
         gap->service.adv_svc_uuid,
