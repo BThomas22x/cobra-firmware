@@ -18,13 +18,13 @@ void power_settings_scene_reboot_on_enter(void* context) {
     submenu_set_header(submenu, "Reboot type");
     submenu_add_item(
         submenu,
-        "Firmware upgrade",
+        "Upgrade your Firmware",
         PowerSettingsRebootSubmenuIndexDfu,
         power_settings_scene_reboot_submenu_callback,
         app);
     submenu_add_item(
         submenu,
-        "Flipper OS",
+        "Reboot Flipper OS",
         PowerSettingsRebootSubmenuIndexOs,
         power_settings_scene_reboot_submenu_callback,
         app);
