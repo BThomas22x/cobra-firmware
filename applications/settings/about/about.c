@@ -89,7 +89,7 @@ static DialogMessageButton unleashed_info_screen(DialogsApp* dialogs, DialogMess
 static DialogMessageButton unleashed_info_screen2(DialogsApp* dialogs, DialogMessage* message) {
     DialogMessageButton result;
 
-    const char* screen_text = "Cobra Firmware v1.0.3\n"
+    const char* screen_text = "Cobra Firmware v1.0.3b\n"
                               "Still in beta,debug only\n"
                               "Hack the planet!";
 
