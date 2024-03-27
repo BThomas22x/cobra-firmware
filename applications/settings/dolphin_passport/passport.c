@@ -78,7 +78,7 @@ static void render_callback(Canvas* canvas, void* ctx) {
 
     const char* my_name = furi_hal_version_get_name_ptr();
     snprintf(level_str, 20, "Level: %hu", stats->level);
-    canvas_draw_str(canvas, 58, 12, my_name ? my_name : "Unknown");
+    canvas_draw_str(canvas, 58, 12, my_name ? my_name : "Cobra v1.0.3b");
     canvas_draw_str(canvas, 58, 26, mood_str);
     canvas_draw_str(canvas, 58, 40, level_str);
 
