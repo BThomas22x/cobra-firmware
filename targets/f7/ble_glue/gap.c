@@ -55,7 +55,6 @@ static const uint8_t gap_irk[16] =
 // Encryption root key
 static const uint8_t gap_erk[16] =
     {0xfe, 0xdc, 0xba, 0x09, 0x87, 0x65, 0x43, 0x21, 0xfe, 0xdc, 0xba, 0x09, 0x87, 0x65, 0x43, 0x21};
-static const uint8_t bdaddnew [] = {0xFF, 0x2E, 0xDD, 0xCC, 0xBB, 0xAA};
 
 static Gap* gap = NULL;
 
@@ -326,10 +325,9 @@ static void gap_init_svc(Gap* gap) {
      * The RNG may be used to provide a random number on each power on
      */
     srd_bd_addr[1] = 0x0000ED6E;
-    srd_bd_addr[0] = LL_FLASH_GetUDN();
+    srd_bd_addr[1] = LL_FLASH_GetUDN();
     aci_hal_write_config_data(
         CONFIG_DATA_RANDOM_ADDRESS_OFFSET, CONFIG_DATA_RANDOM_ADDRESS_LEN, (uint8_t*)srd_bd_addr);
-    aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, (uint8_t*)bdaddnew);
     // Set Identity root key used to derive LTK and CSRK
     aci_hal_write_config_data(CONFIG_DATA_IR_OFFSET, CONFIG_DATA_IR_LEN, (uint8_t*)gap_irk);
     // Set Encryption root key used to derive LTK and CSRK
