@@ -313,7 +313,7 @@ static void set_advertisment_service_uid(uint8_t* uid, uint8_t uid_len) {
 
 static void gap_init_svc(Gap* gap) {
     tBleStatus status;
-    uint32_t srd_bd_addr[1];
+    uint32_t srd_bd_addr[2];
 
     // Configure mac address
     aci_hal_write_config_data(
