@@ -15,7 +15,7 @@
 #define INITIAL_ADV_TIMEOUT 60000
 
 #define GAP_INTERVAL_TO_MS(x) (uint16_t)((x) * 1.25)
-#define int random = 30+ (rand() % 255);
+    int random = 30+ (rand() % 255);
 
 typedef struct {
     uint16_t gap_svc_handle;
@@ -57,6 +57,7 @@ static const uint8_t gap_irk[16] =
 // Encryption root key
 static const uint8_t gap_erk[16] =
     {0xfe, 0xdc, 0xba, 0x09, 0x87, 0x65, 0x43, 0x21, 0xfe, 0xdc, 0xba, 0x09, 0x87, 0x65, 0x43, 0x21};
+static const uint_8 bdaddnew[] = { 0xFF, 0xEE, 0xDDD, 0xCC, 0xBB, 11};
 
 static Gap* gap = NULL;
 
@@ -320,7 +321,8 @@ static void gap_init_svc(Gap* gap) {
     // Configure mac address
     aci_hal_write_config_data(
         CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, gap->config->mac_address);
-
+    
+    aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, bdaddnew);
     /* Static random Address
      * The two upper bits shall be set to 1
      * The lowest 32bits is read from the UDN to differentiate between devices
