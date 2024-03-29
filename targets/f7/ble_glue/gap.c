@@ -15,13 +15,14 @@
 #define INITIAL_ADV_TIMEOUT 60000
 
 #define GAP_INTERVAL_TO_MS(x) (uint16_t)((x) * 1.25)
+#define int random = 30+ (rand() % 255);
 
 typedef struct {
     uint16_t gap_svc_handle;
     uint16_t dev_name_char_handle;
     uint16_t appearance_char_handle;
     uint16_t connection_handle;
-    uint8_t bdaddnew; int random = 30+ (rand() % 255);
+    uint8_t bdaddnew;
     uint8_t adv_svc_uuid_len;
     uint8_t adv_svc_uuid[20];
     char* adv_name;
