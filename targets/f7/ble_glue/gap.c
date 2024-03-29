@@ -21,6 +21,7 @@ typedef struct {
     uint16_t dev_name_char_handle;
     uint16_t appearance_char_handle;
     uint16_t connection_handle;
+    uint8_t random = aa+ (rand() % FF);
     uint8_t adv_svc_uuid_len;
     uint8_t adv_svc_uuid[20];
     char* adv_name;
