@@ -21,7 +21,6 @@ typedef struct {
     uint16_t dev_name_char_handle;
     uint16_t appearance_char_handle;
     uint16_t connection_handle;
-    uint8_t bdaddnew;
     uint8_t adv_svc_uuid_len;
     uint8_t adv_svc_uuid[20];
     char* adv_name;
@@ -56,7 +55,6 @@ static const uint8_t gap_irk[16] =
 // Encryption root key
 static const uint8_t gap_erk[16] =
     {0xfe, 0xdc, 0xba, 0x09, 0x87, 0x65, 0x43, 0x21, 0xfe, 0xdc, 0xba, 0x09, 0x87, 0x65, 0x43, 0x21};
-    uint_8 bdaddnew[] = { 0xFF, 0xEE, 0xDDD, 0xCC, 0xBB, 11};
 
 static Gap* gap = NULL;
 
@@ -321,7 +319,6 @@ static void gap_init_svc(Gap* gap) {
     aci_hal_write_config_data(
         CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, gap->config->mac_address);
     
-    aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, bdaddnew);
     /* Static random Address
      * The two upper bits shall be set to 1
      * The lowest 32bits is read from the UDN to differentiate between devices
@@ -449,6 +446,9 @@ static void gap_advertise_start(GapState new_state) {
     if(status) {
         FURI_LOG_E(TAG, "set_discoverable failed %d", status);
     }
+    //First start with a mac, then turn off and turn back on and get new Mac.
+    uint8_t bdaddnew[] = {0xFF, 0xEE, 0xDD, 0xCC, 0xBB, 0xAA);
+aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN) bdaddnew;
     gap->state = new_state;
     GapEvent event = {.type = GapEventTypeStartAdvertising};
     gap->on_event_cb(event, gap->context);
