@@ -447,21 +447,18 @@ static void gap_advertise_start(GapState new_state) {
         FURI_LOG_E(TAG, "set_discoverable failed %d", status);
     }
 
-void srand( unsigned seed );
-           OR
-int srand( unsigned int seed);
-    
-    int newaddmac()
-{    
-    srand(macnew(0));
-    for (int i = 0; i = < 3; i++)
-        cout << rand() % 255 << " ";
-
-    return 0;
+int bdaddnew() 
+{ 
+    // This program will create some sequence of 
+    // random numbers on every program run 
+    for (int i = 0; i < 5; i++) 
+        cout << rand()%255 << " "; 
+  
+    return 0; 
 }
     
     //First start with a mac, then turn off and turn back on and get new Mac.
-    uint8_t bdaddnew[] = {0xFF, 0xEE, 0xDD, 0xCC, 0xBB, 0xAA);
+    uint8_t bdaddnew[] = {int bdaddnew());
 aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN) bdaddnew;
     gap->state = new_state;
     GapEvent event = {.type = GapEventTypeStartAdvertising};
