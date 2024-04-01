@@ -24,6 +24,7 @@ typedef struct {
     uint8_t adv_svc_uuid[20];
     char* adv_name;
 } GapSvc;
+// creating the different mac address tags
 uint8_t bdaddnew;
 uint8_t bdaddnew2;
 uint8_t bdaddnew3;
@@ -454,6 +455,7 @@ static void gap_advertise_start(GapState new_state) {
         0,
         0);
 
+        //start 10 mac addresses depending on which "random" number you get
     int main(void);
 
     int r;
@@ -499,7 +501,7 @@ static void gap_advertise_start(GapState new_state) {
         uint8_t bdaddnew10[] = {0x92, 0x48, 0xDE, 0x0C, 0xAE, 0xAE};
         aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, bdaddnew10);
     }
-
+        // end 10 mac addresses
     if(status) {
         FURI_LOG_E(TAG, "set_discoverable failed %d", status);
     }
