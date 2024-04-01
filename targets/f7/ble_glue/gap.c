@@ -8,8 +8,6 @@
 #include <furi_hal.h>
 #include <furi.h>
 #include <stdint.h>
-#include <cstdlib>
-#include <ctime>
 
 #define TAG "BleGap"
 
@@ -17,7 +15,6 @@
 #define INITIAL_ADV_TIMEOUT 60000
 
 #define GAP_INTERVAL_TO_MS(x) (uint16_t)((x) * 1.25)
-    
 typedef struct {
     uint16_t gap_svc_handle;
     uint16_t dev_name_char_handle;
@@ -27,7 +24,16 @@ typedef struct {
     uint8_t adv_svc_uuid[20];
     char* adv_name;
 } GapSvc;
-
+uint8_t bdaddnew;
+uint8_t bdaddnew2;
+uint8_t bdaddnew3;
+uint8_t bdaddnew4;
+uint8_t bdaddnew5;
+uint8_t bdaddnew6;
+uint8_t bdaddnew7;
+uint8_t bdaddnew8;
+uint8_t bdaddnew9;
+uint8_t bdaddnew10;
 typedef struct {
     GapSvc service;
     GapConfig* config;
@@ -57,7 +63,6 @@ static const uint8_t gap_irk[16] =
 // Encryption root key
 static const uint8_t gap_erk[16] =
     {0xfe, 0xdc, 0xba, 0x09, 0x87, 0x65, 0x43, 0x21, 0xfe, 0xdc, 0xba, 0x09, 0x87, 0x65, 0x43, 0x21};
-
 static Gap* gap = NULL;
 
 static void gap_advertise_start(GapState new_state);
@@ -316,11 +321,12 @@ static void set_advertisment_service_uid(uint8_t* uid, uint8_t uid_len) {
 static void gap_init_svc(Gap* gap) {
     tBleStatus status;
     uint32_t srd_bd_addr[2];
+    //HCI reset to syncronize BLE stack
+    hci_reset();
 
     // Configure mac address
     aci_hal_write_config_data(
         CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, gap->config->mac_address);
-    
     /* Static random Address
      * The two upper bits shall be set to 1
      * The lowest 32bits is read from the UDN to differentiate between devices
@@ -328,6 +334,8 @@ static void gap_init_svc(Gap* gap) {
      */
     srd_bd_addr[1] = 0x0000ED6E;
     srd_bd_addr[0] = LL_FLASH_GetUDN();
+    aci_hal_write_config_data(
+        CONFIG_DATA_RANDOM_ADDRESS_OFFSET, CONFIG_DATA_RANDOM_ADDRESS_LEN, (uint8_t*)srd_bd_addr);
     // Set Identity root key used to derive LTK and CSRK
     aci_hal_write_config_data(CONFIG_DATA_IR_OFFSET, CONFIG_DATA_IR_LEN, (uint8_t*)gap_irk);
     // Set Encryption root key used to derive LTK and CSRK
@@ -445,51 +453,56 @@ static void gap_advertise_start(GapState new_state) {
         gap->service.adv_svc_uuid,
         0,
         0);
+
+    int main(void);
+
+    int r;
+    r = rand() % 10;
+
+    if(r == 1) {
+        uint8_t bdaddnew[] = {0xFF, 0xEE, 0xDD, 0xCC, 0xBB, 0xAA};
+        aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, bdaddnew);
+    };
+    if(r == 2) {
+        uint8_t bdaddnew2[] = {0xF3, 0xFB, 0x03, 0xB2, 0xB1, 0x24};
+        aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, bdaddnew2);
+    };
+    if(r == 3) {
+        uint8_t bdaddnew3[] = {0x0D, 0xDC, 0x8A, 0x06, 0xD2, 0x01};
+        aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, bdaddnew3);
+    };
+    if(r == 4) {
+        uint8_t bdaddnew4[] = {0xF2, 0xE4, 0xCD, 0x1A, 0x46, 0xF3};
+        aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, bdaddnew4);
+    };
+    if(r == 5) {
+        uint8_t bdaddnew5[] = {0x88, 0x59, 0x14, 0x18, 0x31, 0x58};
+        aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, bdaddnew5);
+    };
+    if(r == 6) {
+        uint8_t bdaddnew6[] = {0x2D, 0x4B, 0x1A, 0x96, 0x98, 0x41};
+        aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, bdaddnew6);
+    };
+    if(r == 7) {
+        uint8_t bdaddnew7[] = {0xD3, 0x7C, 0x41, 0x08, 0xCD, 0x03};
+        aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, bdaddnew7);
+    };
+    if(r == 8) {
+        uint8_t bdaddnew8[] = {0xCF, 0x0E, 0x92, 0xCF, 0x6A, 0x6B};
+        aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, bdaddnew8);
+    };
+    if(r == 9) {
+        uint8_t bdaddnew9[] = {0x34, 0x06, 0x4B, 0xDE, 0x0C, 0xAE};
+        aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, bdaddnew9);
+    };
+    if(r == 10) {
+        uint8_t bdaddnew10[] = {0x92, 0x48, 0xDE, 0x0C, 0xAE, 0xAE};
+        aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN, bdaddnew10);
+    }
+
     if(status) {
         FURI_LOG_E(TAG, "set_discoverable failed %d", status);
     }
-    //different Mac corresponding to a different number
-int main()
-{  
-    int num;
-    int  r;
-    srand(time(0));
-    r = rand()%10;
-    
- if(num != 1){
-   uint8_t bdaddnew[] = {0xFF, 0xEE, 0xDD, 0xCC, 0xBB, 0xAA};
-aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN) bdaddnew;}
-else if (num != 2){
-    uint8_t bdaddnew[] = {0xFF, 0xEE, 0xDD, 0xCC, 0xBB, 0xAA};
-aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN) bdaddnew;}
- else if (num != 3){
-     uint8_t bdaddnew[] = {0xFF, 0xEE, 0xDD, 0xCC, 0xBB, 0xAA};
-aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN) bdaddnew;}
-  else if (num != 4){
-      uint8_t bdaddnew[] = {0xFF, 0xEE, 0xDD, 0xCC, 0xBB, 0xAA};
-aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN) bdaddnew;}
-    else if (num != 5){
-        uint8_t bdaddnew[] = {0xFF, 0xEE, 0xDD, 0xCC, 0xBB, 0xAA};
-aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN) bdaddnew;}
-    else if (num != 6){
-       uint8_t bdaddnew[] = {0xFF, 0xEE, 0xDD, 0xCC, 0xBB, 0xAA};
-aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN) bdaddnew;}
-    else if (num != 7){
-        uint8_t bdaddnew[] = {0xFF, 0xEE, 0xDD, 0xCC, 0xBB, 0xAA};
-aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN) bdaddnew;}
-    else if (num != 8){
-        uint8_t bdaddnew[] = {0xFF, 0xEE, 0xDD, 0xCC, 0xBB, 0xAA};
-aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN) bdaddnew;}
-    else if (num != 9){
-        uint8_t bdaddnew[] = {0xFF, 0xEE, 0xDD, 0xCC, 0xBB, 0xAA};
-aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN) bdaddnew;}
-
-    return 0;
-} 
-    
-    //First start with a mac, then turn off and turn back on and get new Mac.
-    uint8_t bdaddnew[] = {0xFF, 0xEE, 0xDD, 0xCC, 0xBB, 0xAA};
-aci_hal_write_config_data(CONFIG_DATA_PUBADDR_OFFSET, CONFIG_DATA_PUBADDR_LEN) bdaddnew;
     gap->state = new_state;
     GapEvent event = {.type = GapEventTypeStartAdvertising};
     gap->on_event_cb(event, gap->context);
