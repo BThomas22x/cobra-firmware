@@ -26,8 +26,8 @@ typedef struct {
     size_t position;
 } MenuModel;
 
-static void menu_process_up(Menu* menu);
-static void menu_process_down(Menu* menu);
+static void menu_process_right(Menu* menu);
+static void menu_process_left(Menu* menu);
 static void menu_process_ok(Menu* menu);
 
 static void menu_draw_callback(Canvas* canvas, void* _model) {
@@ -40,33 +40,29 @@ static void menu_draw_callback(Canvas* canvas, void* _model) {
     if(items_count) {
         MenuItem* item;
         size_t shift_position;
-        // First line
-        canvas_set_font(canvas, FontSecondary);
-        shift_position = (0 + position + items_count - 1) % items_count;
-        item = MenuItemArray_get(model->items, shift_position);
-        if(item->icon) {
-            canvas_draw_icon_animation(canvas, 4, 3, item->icon);
+
+        uint8_t icon_x = 1;
+        uint8_t icon_y = 32;
+
+        for(size_t i = 0; i < 7; i++) {
+            shift_position = (i + position + 8 * items_count - 3) % items_count;
+            item = MenuItemArray_get(model->items, shift_position);
+            if(i == 3) {
+                canvas_set_font(canvas, FontPrimary);
+                canvas_draw_str_aligned(canvas, 64, 60, AlignCenter, AlignBottom, item->label);
+                icon_x += 8;
+                icon_y = 24;
+            }
+            if(item->icon) {
+                canvas_draw_icon_animation(canvas, icon_x, icon_y, item->icon);
+            }
+            if(i == 3) {
+                icon_x += 8;
+                icon_y = 32;
+            }
+            icon_x += 16;
         }
-        canvas_draw_str(canvas, 22, 14, item->label);
-        // Second line main
-        canvas_set_font(canvas, FontPrimary);
-        shift_position = (1 + position + items_count - 1) % items_count;
-        item = MenuItemArray_get(model->items, shift_position);
-        if(item->icon) {
-            canvas_draw_icon_animation(canvas, 4, 25, item->icon);
-        }
-        canvas_draw_str(canvas, 22, 36, item->label);
-        // Third line
-        canvas_set_font(canvas, FontSecondary);
-        shift_position = (2 + position + items_count - 1) % items_count;
-        item = MenuItemArray_get(model->items, shift_position);
-        if(item->icon) {
-            canvas_draw_icon_animation(canvas, 4, 47, item->icon);
-        }
-        canvas_draw_str(canvas, 22, 58, item->label);
-        // Frame and scrollbar
-        elements_frame(canvas, 0, 21, 128 - 5, 21);
-        elements_scrollbar(canvas, position, items_count);
+
     } else {
         canvas_draw_str(canvas, 2, 32, "Empty");
         elements_scrollbar(canvas, 0, 0);
@@ -78,23 +74,23 @@ static bool menu_input_callback(InputEvent* event, void* context) {
     bool consumed = false;
 
     if(event->type == InputTypeShort) {
-        if(event->key == InputKeyUp) {
+        if(event->key == InputKeyRight) {
             consumed = true;
-            menu_process_up(menu);
-        } else if(event->key == InputKeyDown) {
+            menu_process_right(menu);
+        } else if(event->key == InputKeyLeft) {
             consumed = true;
-            menu_process_down(menu);
+            menu_process_left(menu);
         } else if(event->key == InputKeyOk) {
             consumed = true;
             menu_process_ok(menu);
         }
     } else if(event->type == InputTypeRepeat) {
-        if(event->key == InputKeyUp) {
+        if(event->key == InputKeyRight) {
             consumed = true;
-            menu_process_up(menu);
-        } else if(event->key == InputKeyDown) {
+            menu_process_right(menu);
+        } else if(event->key == InputKeyLeft) {
             consumed = true;
-            menu_process_down(menu);
+            menu_process_left(menu);
         }
     }
 
@@ -221,7 +217,7 @@ void menu_set_selected_item(Menu* menu, uint32_t index) {
         true);
 }
 
-static void menu_process_up(Menu* menu) {
+static void menu_process_left(Menu* menu) {
     with_view_model(
         menu->view,
         MenuModel * model,
@@ -245,7 +241,7 @@ static void menu_process_up(Menu* menu) {
         true);
 }
 
-static void menu_process_down(Menu* menu) {
+static void menu_process_right(Menu* menu) {
     with_view_model(
         menu->view,
         MenuModel * model,
